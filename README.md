@@ -1,0 +1,1 @@
+# ClothesMinded_rembg
