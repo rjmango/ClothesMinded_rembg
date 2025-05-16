@@ -4,16 +4,19 @@ import { Rembg } from "@xixiyahaha/rembg-node";
 import sharp from "sharp";
 import fs from "fs";
 
-// Setup Express and Multer
 const app = express();
 const upload = multer({ dest: "uploads/" });
 const port = 3000;
 
 app.post("/remove-bg", upload.single("image"), async (req, res) => {
+  console.log("File received:", req.file); // Log the file object
+  if (!req.file) {
+    return res.status(400).send("No file uploaded.");
+  }
   try {
     const rembg = new Rembg({ logging: true });
 
-    // Load input image
+    // Read input image
     const inputPath = req.file.path;
     const input = sharp(inputPath);
 
@@ -26,9 +29,15 @@ app.post("/remove-bg", upload.single("image"), async (req, res) => {
     // Cleanup uploaded file
     fs.unlinkSync(inputPath);
 
+    // Encode buffer to base64
+    const base64Output = outputBuffer.toString("base64").replace(/\n|\r/g, "");
+
+    console.log("Base64 output:", base64Output); // Log the base64 string
+
     // Send result
-    res.set("Content-Type", "image/webp");
-    res.send(outputBuffer);
+    res.set("Content-Type", "application/json");
+    res.send({ base64: base64Output });
+    console.log("Background removed and encoded successfully.");
   } catch (error) {
     console.error("Error removing background:", error);
     res.status(500).send("Failed to process image.");
