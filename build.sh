@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "Installing Node modules..."
+npm install
+
 # Ensure home directory exists (especially important in Docker)
 mkdir -p "$(node -p "require('os').homedir()")"
 
