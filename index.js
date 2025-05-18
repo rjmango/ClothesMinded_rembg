@@ -4,6 +4,7 @@ import { Rembg } from "@xixiyahaha/rembg-node";
 import sharp from "sharp";
 import fs from "fs";
 
+const rembg = new Rembg({ logging: true });
 const app = express();
 const upload = multer({ dest: "uploads/" });
 const port = 3000;
