@@ -6,7 +6,7 @@ npm install
 
 echo "$(node -p "require('os').homedir()")"
 # Ensure home directory exists (especially important in Docker)
-mkdir -p "$(node -p "require('os').homedir()/.u2net")"
+mkdir -p "$(node -p "require('os').homedir()")/.u2net"
 
 # Download file
 wget -O "$(node -p "require('os').homedir()")/.u2net/u2net.onnx" \
