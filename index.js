@@ -8,7 +8,7 @@ import path from "path";
 
 const u2netmodel = path.resolve(os.homedir(), ".u2net")
 console.log(u2netmodel);
-const modelPath = path.join(u2netmodel, "u2net.onnx");
+const modelPath = path.resolve(u2netmodel, "u2net.onnx");
 console.log(modelPath);
 
 const rembg = new Rembg({ logging: true });
