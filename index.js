@@ -4,9 +4,13 @@ import { Rembg } from "@xixiyahaha/rembg-node";
 import sharp from "sharp";
 import fs from "fs";
 import os from "os";
+import path from "path";
 
+const u2netmodel = path.resolve(os.homedir(), ".u2net")
+console.log(u2netmodel);
+const modelPath = path.join(u2netmodel, "u2net.onnx");
+console.log(modelPath);
 
-console.log(os.homedir());
 const rembg = new Rembg({ logging: true });
 const app = express();
 const upload = multer({ dest: "uploads/" });
