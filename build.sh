@@ -9,7 +9,7 @@ echo "$(node -p "require('os').homedir()")"
 mkdir -p "$(node -p "require('os').homedir()")"
 
 # Download file
-wget -O "$(node -p "require('os').homedir()")/u2net.onnx" \
+wget -O "$(node -p "require('os').homedir()")/.u2net/u2net.onnx" \
      https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx
 
 # Verify download succeeded
