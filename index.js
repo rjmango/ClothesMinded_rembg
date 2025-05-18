@@ -6,10 +6,32 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 
+const checkModelPath = (u2netDir) => {
+  try {
+    if (!fs.existsSync(u2netDir)) {
+      // fs.mkdirSync(u2netDir, { recursive: true });
+      console.log(`Created directory: ${u2netDir}`);
+    }
+
+    if (fs.existsSync(modelPath)) {
+      console.log(`Model found (${modelPath})`);
+      return true;
+    }
+    
+    console.warn(`Model missing (${modelPath})`);
+    return false;
+  } catch (err) {
+    console.error(`Path check failed: ${err.message}`);
+    return false;
+  }
+};
+
 const u2netmodel = path.resolve(os.homedir(), ".u2net")
 console.log(u2netmodel);
 const modelPath = path.resolve(u2netmodel, "u2net.onnx");
 console.log(modelPath);
+
+console.log(checkModelPath(modelPath));
 
 const rembg = new Rembg({ logging: true });
 const app = express();
