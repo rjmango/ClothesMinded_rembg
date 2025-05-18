@@ -3,7 +3,10 @@ import multer from "multer";
 import { Rembg } from "@xixiyahaha/rembg-node";
 import sharp from "sharp";
 import fs from "fs";
+import os from "os";
 
+
+console.log(os.homedir());
 const rembg = new Rembg({ logging: true });
 const app = express();
 const upload = multer({ dest: "uploads/" });
